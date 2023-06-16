@@ -80,42 +80,40 @@ class _HomePageState extends State<HomePage>
                   Padding(
                     padding: const EdgeInsets.only(top: 16, bottom: 16),
                     child: SizedBox(
-                        height: 40,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 4,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    selected = index;
-                                  });
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: AppUtils.kBorderRadius8,
-                                    color: selected == index
-                                        ? ThemeColors.light.primary
-                                        : const Color(0xffF5F5F5),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 15,
-                                        right: 15,
-                                        top: 10,
-                                        bottom: 10),
-                                    child: Text(
-                                      titleList[index],
-                                      style: ThemeTextStyles.light.buttonStyle,
-                                    ),
+                      height: 40,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 4,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selected = index;
+                                });
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: AppUtils.kBorderRadius8,
+                                  color: selected == index
+                                      ? ThemeColors.light.primary
+                                      : const Color(0xffF5F5F5),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 15, right: 15, top: 10, bottom: 10),
+                                  child: Text(
+                                    titleList[index],
+                                    style: ThemeTextStyles.light.buttonStyle,
                                   ),
                                 ),
                               ),
-                            );
-                          },
-                        )),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 ],
               ),
