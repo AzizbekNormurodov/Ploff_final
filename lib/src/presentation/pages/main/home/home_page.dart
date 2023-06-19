@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage>
   void didChangeDependencies() {
     super.didChangeDependencies();
     context.read<HomeBloc>().add(const GetBanners());
+    context.read<HomeBloc>().add(const GetProducts());
   }
 
   @override
@@ -199,12 +200,94 @@ class _HomePageState extends State<HomePage>
                     ),
                   ),
                 ),
-                const DiscountWidget(),
-                const PopularWidget(),
-                const RecommendationsWidget(),
+                // const DiscountWidget(),
+                // const PopularWidget(),
+                // const RecommendationsWidget(),
               ],
             );
           }
+          if (state is ProductState) {
+            final list = state.products?.products?.map((e) => e.name).toList();
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 16,
+                      bottom: 6,
+                    ),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: ThemeColors.light.white,
+                        ),
+                        padding: AppUtils.kPaddingAll16,
+                        height: 172,
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
+                              child: ClipRRect(
+                                borderRadius: AppUtils.kBorderRadius8,
+                                child: PageView.builder(
+                                  itemCount:
+                                  int.tryParse(state.products?.count ?? '0'),
+                                  onPageChanged: (i) {
+                                    setState(() {
+                                      index = i;
+                                    });
+                                  },
+                                  itemBuilder: (_, index) {
+                                    return Text((state.products?.count).toString());
+                                  },
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 0,
+                              right: 0,
+                              bottom: 10,
+                              child: Center(
+                                child: SizedBox(
+                                  height: 8,
+                                  child: ListView.separated(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (_, index) {
+                                      return AnimatedContainer(
+                                        duration:
+                                        const Duration(milliseconds: 300),
+                                        height: 8,
+                                        width: 8,
+                                        decoration: BoxDecoration(
+                                          color: index == this.index
+                                              ? ThemeColors.light.white
+                                              : ThemeColors.light.white
+                                              .withOpacity(0.4),
+                                          shape: BoxShape.circle,
+                                        ),
+                                      );
+                                    },
+                                    separatorBuilder: (_, __) =>
+                                    AppUtils.kBoxWidth4,
+                                    itemCount: list!.length,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                // const DiscountWidget(),
+                // const PopularWidget(),
+                // const RecommendationsWidget(),
+              ],
+            );
+          }
+
           return const SizedBox();
         }),
       ),

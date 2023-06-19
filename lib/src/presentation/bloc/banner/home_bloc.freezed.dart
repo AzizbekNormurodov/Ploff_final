@@ -19,32 +19,38 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getBanners,
+    required TResult Function() getProducts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getBanners,
+    TResult? Function()? getProducts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getBanners,
+    TResult Function()? getProducts,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetBanners value) getBanners,
+    required TResult Function(GetProducts value) getProducts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetBanners value)? getBanners,
+    TResult? Function(GetProducts value)? getProducts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetBanners value)? getBanners,
+    TResult Function(GetProducts value)? getProducts,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +112,7 @@ class _$GetBanners implements GetBanners {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getBanners,
+    required TResult Function() getProducts,
   }) {
     return getBanners();
   }
@@ -114,6 +121,7 @@ class _$GetBanners implements GetBanners {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getBanners,
+    TResult? Function()? getProducts,
   }) {
     return getBanners?.call();
   }
@@ -122,6 +130,7 @@ class _$GetBanners implements GetBanners {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getBanners,
+    TResult Function()? getProducts,
     required TResult orElse(),
   }) {
     if (getBanners != null) {
@@ -134,6 +143,7 @@ class _$GetBanners implements GetBanners {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetBanners value) getBanners,
+    required TResult Function(GetProducts value) getProducts,
   }) {
     return getBanners(this);
   }
@@ -142,6 +152,7 @@ class _$GetBanners implements GetBanners {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetBanners value)? getBanners,
+    TResult? Function(GetProducts value)? getProducts,
   }) {
     return getBanners?.call(this);
   }
@@ -150,6 +161,7 @@ class _$GetBanners implements GetBanners {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetBanners value)? getBanners,
+    TResult Function(GetProducts value)? getProducts,
     required TResult orElse(),
   }) {
     if (getBanners != null) {
@@ -164,23 +176,128 @@ abstract class GetBanners implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$GetProductsCopyWith<$Res> {
+  factory _$$GetProductsCopyWith(
+          _$GetProducts value, $Res Function(_$GetProducts) then) =
+      __$$GetProductsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetProductsCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetProducts>
+    implements _$$GetProductsCopyWith<$Res> {
+  __$$GetProductsCopyWithImpl(
+      _$GetProducts _value, $Res Function(_$GetProducts) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetProducts implements GetProducts {
+  const _$GetProducts();
+
+  @override
+  String toString() {
+    return 'HomeEvent.getProducts()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetProducts);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getBanners,
+    required TResult Function() getProducts,
+  }) {
+    return getProducts();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getBanners,
+    TResult? Function()? getProducts,
+  }) {
+    return getProducts?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getBanners,
+    TResult Function()? getProducts,
+    required TResult orElse(),
+  }) {
+    if (getProducts != null) {
+      return getProducts();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetBanners value) getBanners,
+    required TResult Function(GetProducts value) getProducts,
+  }) {
+    return getProducts(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetBanners value)? getBanners,
+    TResult? Function(GetProducts value)? getProducts,
+  }) {
+    return getProducts?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetBanners value)? getBanners,
+    TResult Function(GetProducts value)? getProducts,
+    required TResult orElse(),
+  }) {
+    if (getProducts != null) {
+      return getProducts(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetProducts implements HomeEvent {
+  const factory GetProducts() = _$GetProducts;
+}
+
+/// @nodoc
 mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
     required TResult Function(BannerResponse? banners) bannerState,
+    required TResult Function(ProductResponse? products) productState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
     TResult? Function(BannerResponse? banners)? bannerState,
+    TResult? Function(ProductResponse? products)? productState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
     TResult Function(BannerResponse? banners)? bannerState,
+    TResult Function(ProductResponse? products)? productState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -188,18 +305,21 @@ mixin _$HomeState {
   TResult map<TResult extends Object?>(
     TResult Function(_HomeState value) $default, {
     required TResult Function(BannerState value) bannerState,
+    required TResult Function(ProductState value) productState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_HomeState value)? $default, {
     TResult? Function(BannerState value)? bannerState,
+    TResult? Function(ProductState value)? productState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_HomeState value)? $default, {
     TResult Function(BannerState value)? bannerState,
+    TResult Function(ProductState value)? productState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -262,6 +382,7 @@ class _$_HomeState implements _HomeState {
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
     required TResult Function(BannerResponse? banners) bannerState,
+    required TResult Function(ProductResponse? products) productState,
   }) {
     return $default();
   }
@@ -271,6 +392,7 @@ class _$_HomeState implements _HomeState {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
     TResult? Function(BannerResponse? banners)? bannerState,
+    TResult? Function(ProductResponse? products)? productState,
   }) {
     return $default?.call();
   }
@@ -280,6 +402,7 @@ class _$_HomeState implements _HomeState {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
     TResult Function(BannerResponse? banners)? bannerState,
+    TResult Function(ProductResponse? products)? productState,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -293,6 +416,7 @@ class _$_HomeState implements _HomeState {
   TResult map<TResult extends Object?>(
     TResult Function(_HomeState value) $default, {
     required TResult Function(BannerState value) bannerState,
+    required TResult Function(ProductState value) productState,
   }) {
     return $default(this);
   }
@@ -302,6 +426,7 @@ class _$_HomeState implements _HomeState {
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_HomeState value)? $default, {
     TResult? Function(BannerState value)? bannerState,
+    TResult? Function(ProductState value)? productState,
   }) {
     return $default?.call(this);
   }
@@ -311,6 +436,7 @@ class _$_HomeState implements _HomeState {
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_HomeState value)? $default, {
     TResult Function(BannerState value)? bannerState,
+    TResult Function(ProductState value)? productState,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -390,6 +516,7 @@ class _$BannerState implements BannerState {
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
     required TResult Function(BannerResponse? banners) bannerState,
+    required TResult Function(ProductResponse? products) productState,
   }) {
     return bannerState(banners);
   }
@@ -399,6 +526,7 @@ class _$BannerState implements BannerState {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
     TResult? Function(BannerResponse? banners)? bannerState,
+    TResult? Function(ProductResponse? products)? productState,
   }) {
     return bannerState?.call(banners);
   }
@@ -408,6 +536,7 @@ class _$BannerState implements BannerState {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
     TResult Function(BannerResponse? banners)? bannerState,
+    TResult Function(ProductResponse? products)? productState,
     required TResult orElse(),
   }) {
     if (bannerState != null) {
@@ -421,6 +550,7 @@ class _$BannerState implements BannerState {
   TResult map<TResult extends Object?>(
     TResult Function(_HomeState value) $default, {
     required TResult Function(BannerState value) bannerState,
+    required TResult Function(ProductState value) productState,
   }) {
     return bannerState(this);
   }
@@ -430,6 +560,7 @@ class _$BannerState implements BannerState {
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_HomeState value)? $default, {
     TResult? Function(BannerState value)? bannerState,
+    TResult? Function(ProductState value)? productState,
   }) {
     return bannerState?.call(this);
   }
@@ -439,6 +570,7 @@ class _$BannerState implements BannerState {
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_HomeState value)? $default, {
     TResult Function(BannerState value)? bannerState,
+    TResult Function(ProductState value)? productState,
     required TResult orElse(),
   }) {
     if (bannerState != null) {
@@ -454,5 +586,145 @@ abstract class BannerState implements HomeState {
   BannerResponse? get banners;
   @JsonKey(ignore: true)
   _$$BannerStateCopyWith<_$BannerState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ProductStateCopyWith<$Res> {
+  factory _$$ProductStateCopyWith(
+          _$ProductState value, $Res Function(_$ProductState) then) =
+      __$$ProductStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProductResponse? products});
+}
+
+/// @nodoc
+class __$$ProductStateCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$ProductState>
+    implements _$$ProductStateCopyWith<$Res> {
+  __$$ProductStateCopyWithImpl(
+      _$ProductState _value, $Res Function(_$ProductState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? products = freezed,
+  }) {
+    return _then(_$ProductState(
+      freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as ProductResponse?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProductState implements ProductState {
+  const _$ProductState(this.products);
+
+  @override
+  final ProductResponse? products;
+
+  @override
+  String toString() {
+    return 'HomeState.productState(products: $products)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProductState &&
+            (identical(other.products, products) ||
+                other.products == products));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, products);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProductStateCopyWith<_$ProductState> get copyWith =>
+      __$$ProductStateCopyWithImpl<_$ProductState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(BannerResponse? banners) bannerState,
+    required TResult Function(ProductResponse? products) productState,
+  }) {
+    return productState(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(BannerResponse? banners)? bannerState,
+    TResult? Function(ProductResponse? products)? productState,
+  }) {
+    return productState?.call(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(BannerResponse? banners)? bannerState,
+    TResult Function(ProductResponse? products)? productState,
+    required TResult orElse(),
+  }) {
+    if (productState != null) {
+      return productState(products);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_HomeState value) $default, {
+    required TResult Function(BannerState value) bannerState,
+    required TResult Function(ProductState value) productState,
+  }) {
+    return productState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_HomeState value)? $default, {
+    TResult? Function(BannerState value)? bannerState,
+    TResult? Function(ProductState value)? productState,
+  }) {
+    return productState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_HomeState value)? $default, {
+    TResult Function(BannerState value)? bannerState,
+    TResult Function(ProductState value)? productState,
+    required TResult orElse(),
+  }) {
+    if (productState != null) {
+      return productState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProductState implements HomeState {
+  const factory ProductState(final ProductResponse? products) = _$ProductState;
+
+  ProductResponse? get products;
+  @JsonKey(ignore: true)
+  _$$ProductStateCopyWith<_$ProductState> get copyWith =>
       throw _privateConstructorUsedError;
 }

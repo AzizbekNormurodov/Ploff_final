@@ -9,6 +9,7 @@ import 'package:ploff_final/src/data/models/auth/phone_response.dart';
 import 'package:ploff_final/src/data/models/auth/register_request.dart';
 import 'package:ploff_final/src/data/models/auth/register_response.dart';
 import 'package:ploff_final/src/data/models/home/banner_response.dart';
+import 'package:ploff_final/src/data/models/home/product_response.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -46,4 +47,7 @@ abstract class ApiClient {
 
   @GET(Urls.GET_BANNERS)
   Future<BannerResponse> banner();
+
+  @GET(Urls.GET_PRODUCTS)
+  Future<ProductResponse> product();
 }

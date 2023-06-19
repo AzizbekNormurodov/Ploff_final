@@ -13,6 +13,7 @@ import 'package:ploff_final/src/data/models/auth/phone_response.dart';
 import 'package:ploff_final/src/data/models/auth/register_request.dart';
 import 'package:ploff_final/src/data/models/auth/register_response.dart';
 import 'package:ploff_final/src/data/models/home/banner_response.dart';
+import 'package:ploff_final/src/data/models/home/product_response.dart';
 import 'package:ploff_final/src/domain/network/api_client.dart';
 import 'package:ploff_final/src/domain/network/failure.dart';
 import 'package:ploff_final/src/domain/network/server_error.dart';
@@ -43,5 +44,7 @@ abstract class AuthRepository {
   });
 
   Future<Either<Failure, BannerResponse>> banner();
+
+  Future<Either<Failure, ProductResponse>> product();
 
 }

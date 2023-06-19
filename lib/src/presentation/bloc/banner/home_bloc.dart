@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ploff_final/src/data/models/home/banner_response.dart';
+import 'package:ploff_final/src/data/models/home/product_response.dart';
 import 'package:ploff_final/src/domain/repositories/auth/auth_repository.dart';
 
 part 'home_bloc.freezed.dart';
@@ -16,6 +17,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   HomeBloc(this.authRepository) : super(const HomeState()) {
     on<GetBanners>(_getBanners);
+    on<GetProducts>(_getProducts);
   }
 
   Future<FutureOr<void>> _getBanners(
@@ -27,4 +29,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeState.bannerState(r));
     });
   }
+
+  Future<FutureOr<void>> _getProducts(
+      GetProducts event,
+      Emitter<HomeState> emit,
+      ) async{
+    final result = await authRepository.product();
+    result.fold((l) => l, (r) {
+      emit(HomeState.productState(r));
+    });
+  }
+
+
 }

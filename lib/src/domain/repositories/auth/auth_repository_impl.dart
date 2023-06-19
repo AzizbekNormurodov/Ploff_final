@@ -261,4 +261,43 @@ final class AuthRepositoryImpl extends AuthRepository {
     }
     return response;
   }
+
+  @override
+  Future<Either<Failure, ProductResponse>> product() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await _product();
+        return Right(response);
+      } catch (e) {
+        return Left(
+          ServerFailure(
+            message: e is ServerError ? e.message : e.toString(),
+          ),
+        );
+      }
+    } else {
+      return Left(ServerFailure(message: 'No Internet Connection'));
+    }
+  }
+
+  Future<ProductResponse> _product() async {
+    late ProductResponse response;
+    try {
+      response = await apiClient.product();
+    } on DioError catch (error, stacktrace) {
+      log('Exception occurred: $error stacktrace: $stacktrace');
+      throw ServerError.withDioError(error: error);
+    } on SocketException catch (error, stacktrace) {
+      log('Exception occurred: $error stacktrace: $stacktrace');
+      throw ServerError.withError(message: error.toString());
+    } catch (error, stacktrace) {
+      if (error is TypeError) {
+        log('Type Error: $error stacktrace: $stacktrace');
+        throw ServerError.withError(message: error.toString());
+      }
+      log('Exception occurred: $error stacktrace: $stacktrace');
+      throw ServerError.withError(message: error.toString());
+    }
+    return response;
+  }
 }
