@@ -18,7 +18,7 @@ class Constants {
 class Urls {
   static const GET_CUSTOMERS = '/v1/customers';
   static const GET_BANNERS = '/v1/banner';
-  static const GET_PRODUCTS = '/v1/product';
+  static const GET_PRODUCTS = '/v2/category-with-products';
 
 }
 

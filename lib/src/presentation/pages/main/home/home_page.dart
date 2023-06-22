@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ploff_final/src/config/router/app_routes.dart';
 import 'package:ploff_final/src/config/themes/themes.dart';
 import 'package:ploff_final/src/presentation/bloc/banner/home_bloc.dart';
 
-import 'widgets/discount_widget.dart';
-import 'widgets/popular_widget.dart';
-import 'widgets/recommendations_widget.dart';
 
 part 'package:ploff_final/src/presentation/pages/main/home/mixin/home_mixin.dart';
 
@@ -122,174 +120,158 @@ class _HomePageState extends State<HomePage>
           ),
         ),
         body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-          if (state is BannerState) {
-            final list = state.banners?.banners?.map((e) => e.image).toList();
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 16,
-                      bottom: 6,
-                    ),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: ThemeColors.light.white,
-                        ),
-                        padding: AppUtils.kPaddingAll16,
-                        height: 172,
-                        child: Stack(
-                          children: [
-                            Positioned.fill(
-                              child: ClipRRect(
-                                borderRadius: AppUtils.kBorderRadius8,
-                                child: PageView.builder(
-                                  itemCount:
-                                      int.tryParse(state.banners?.count ?? '0'),
-                                  onPageChanged: (i) {
-                                    setState(() {
-                                      index = i;
-                                    });
-                                  },
+          // final list = state.banners.map((e) => e.image).toList();
+          // final list = state.banners.map((e) => e.image).toList();
+          return CustomScrollView( scrollDirection: Axis.vertical,
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 16,
+                    bottom: 6,
+                  ),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: ThemeColors.light.white,
+                      ),
+                      padding: AppUtils.kPaddingAll16,
+                      height: 172,
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: ClipRRect(
+                              borderRadius: AppUtils.kBorderRadius8,
+                              child: PageView.builder(
+                                itemCount: state.banners.length,
+                                // itemCount: int.tryParse(state.banners.length.toString() ?? "0"),
+                                onPageChanged: (i) {
+                                  setState(() {
+                                    index = i;
+                                  });
+                                },
+                                itemBuilder: (_, index) {
+                                  return CachedNetworkImage(
+                                    imageUrl: state.banners[index].image ?? '',
+                                    fit: BoxFit.cover,
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: 10,
+                            child: Center(
+                              child: SizedBox(
+                                height: 8,
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
                                   itemBuilder: (_, index) {
-                                    return CachedNetworkImage(
-                                      imageUrl: list![index] ?? '',
-                                      fit: BoxFit.cover,
+                                    return AnimatedContainer(
+                                      duration:
+                                      const Duration(milliseconds: 300),
+                                      height: 8,
+                                      width: 8,
+                                      decoration: BoxDecoration(
+                                        color: index == this.index
+                                            ? ThemeColors.light.white
+                                            : ThemeColors.light.white
+                                            .withOpacity(0.4),
+                                        shape: BoxShape.circle,
+                                      ),
                                     );
                                   },
+                                  separatorBuilder: (_, __) =>
+                                  AppUtils.kBoxWidth4,
+                                  itemCount: state.banners.length,
+                                  // itemCount: list!.length,
                                 ),
                               ),
                             ),
-                            Positioned(
-                              left: 0,
-                              right: 0,
-                              bottom: 10,
-                              child: Center(
-                                child: SizedBox(
-                                  height: 8,
-                                  child: ListView.separated(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (_, index) {
-                                      return AnimatedContainer(
-                                        duration:
-                                            const Duration(milliseconds: 300),
-                                        height: 8,
-                                        width: 8,
-                                        decoration: BoxDecoration(
-                                          color: index == this.index
-                                              ? ThemeColors.light.white
-                                              : ThemeColors.light.white
-                                                  .withOpacity(0.4),
-                                          shape: BoxShape.circle,
-                                        ),
-                                      );
-                                    },
-                                    separatorBuilder: (_, __) =>
-                                        AppUtils.kBoxWidth4,
-                                    itemCount: list!.length,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-                // const DiscountWidget(),
-                // const PopularWidget(),
-                // const RecommendationsWidget(),
-              ],
-            );
-          }
-          if (state is ProductState) {
-            final list = state.products?.products?.map((e) => e.name).toList();
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 16,
-                      bottom: 6,
-                    ),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: ThemeColors.light.white,
-                        ),
-                        padding: AppUtils.kPaddingAll16,
-                        height: 172,
-                        child: Stack(
-                          children: [
-                            Positioned.fill(
-                              child: ClipRRect(
-                                borderRadius: AppUtils.kBorderRadius8,
-                                child: PageView.builder(
-                                  itemCount:
-                                  int.tryParse(state.products?.count ?? '0'),
-                                  onPageChanged: (i) {
-                                    setState(() {
-                                      index = i;
-                                    });
-                                  },
-                                  itemBuilder: (_, index) {
-                                    return Text((state.products?.count).toString());
-                                  },
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 0,
-                              right: 0,
-                              bottom: 10,
-                              child: Center(
-                                child: SizedBox(
-                                  height: 8,
-                                  child: ListView.separated(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (_, index) {
-                                      return AnimatedContainer(
-                                        duration:
-                                        const Duration(milliseconds: 300),
-                                        height: 8,
-                                        width: 8,
-                                        decoration: BoxDecoration(
-                                          color: index == this.index
-                                              ? ThemeColors.light.white
-                                              : ThemeColors.light.white
-                                              .withOpacity(0.4),
-                                          shape: BoxShape.circle,
+              ),
+              SliverToBoxAdapter(
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.product);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Container(
+                          child: Column( mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row( mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Column( mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        state.categories[index].categoryTitle!.uz
+                                            .toString(),
+                                        style: ThemeTextStyles.light
+                                            .bodySubheadline,
+                                      ),
+                                      const Text(
+                                        'Своим именем чайханский плов обязан \nстарой ташкентской традиции «ош»...',
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff858585),
                                         ),
-                                      );
-                                    },
-                                    separatorBuilder: (_, __) =>
-                                    AppUtils.kBoxWidth4,
-                                    itemCount: list!.length,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(state.categories[index].products!.first.outPrice.toString(), style: TextStyle(fontSize: 13)),
+                                          SizedBox(width: 5),
+                                          Text(state.categories[index].products!.first.currency.toString(), style: TextStyle(fontSize: 13)),
+                                        ],
+                                      ),
+                                      
+                                    ],
                                   ),
-                                ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child:
+                                    CachedNetworkImage(
+                                      imageUrl: "https://test.cdn.delever.uz/delever/${state
+                                          .categories[index].image}",
+                                      width: 70,
+                                      height: 88,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
+                              Image.asset(
+                                'assets/png/Rectangle.png',
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
+                  itemCount: state.categories.length,
                 ),
-                // const DiscountWidget(),
-                // const PopularWidget(),
-                // const RecommendationsWidget(),
-              ],
-            );
-          }
-
+              ),
+            ],
+          );
           return const SizedBox();
-        }),
+        },),
       ),
     );
   }

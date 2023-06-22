@@ -279,49 +279,12 @@ abstract class GetProducts implements HomeEvent {
 
 /// @nodoc
 mixin _$HomeState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(BannerResponse? banners) bannerState,
-    required TResult Function(ProductResponse? products) productState,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function(BannerResponse? banners)? bannerState,
-    TResult? Function(ProductResponse? products)? productState,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(BannerResponse? banners)? bannerState,
-    TResult Function(ProductResponse? products)? productState,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HomeState value) $default, {
-    required TResult Function(BannerState value) bannerState,
-    required TResult Function(ProductState value) productState,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HomeState value)? $default, {
-    TResult? Function(BannerState value)? bannerState,
-    TResult? Function(ProductState value)? productState,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeState value)? $default, {
-    TResult Function(BannerState value)? bannerState,
-    TResult Function(ProductState value)? productState,
-    required TResult orElse(),
-  }) =>
+  bool get isLoading => throw _privateConstructorUsedError;
+  List<Banners> get banners => throw _privateConstructorUsedError;
+  List<Categories> get categories => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -329,6 +292,9 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
+  @useResult
+  $Res call(
+      {bool isLoading, List<Banners> banners, List<Categories> categories});
 }
 
 /// @nodoc
@@ -340,13 +306,40 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? banners = null,
+    Object? categories = null,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      banners: null == banners
+          ? _value.banners
+          : banners // ignore: cast_nullable_to_non_nullable
+              as List<Banners>,
+      categories: null == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<Categories>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_HomeStateCopyWith<$Res> {
+abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
   factory _$$_HomeStateCopyWith(
           _$_HomeState value, $Res Function(_$_HomeState) then) =
       __$$_HomeStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoading, List<Banners> banners, List<Categories> categories});
 }
 
 /// @nodoc
@@ -356,375 +349,107 @@ class __$$_HomeStateCopyWithImpl<$Res>
   __$$_HomeStateCopyWithImpl(
       _$_HomeState _value, $Res Function(_$_HomeState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? banners = null,
+    Object? categories = null,
+  }) {
+    return _then(_$_HomeState(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      banners: null == banners
+          ? _value._banners
+          : banners // ignore: cast_nullable_to_non_nullable
+              as List<Banners>,
+      categories: null == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<Categories>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_HomeState implements _HomeState {
-  const _$_HomeState();
+  const _$_HomeState(
+      {this.isLoading = false,
+      final List<Banners> banners = const [],
+      final List<Categories> categories = const []})
+      : _banners = banners,
+        _categories = categories;
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+  final List<Banners> _banners;
+  @override
+  @JsonKey()
+  List<Banners> get banners {
+    if (_banners is EqualUnmodifiableListView) return _banners;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_banners);
+  }
+
+  final List<Categories> _categories;
+  @override
+  @JsonKey()
+  List<Categories> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
 
   @override
   String toString() {
-    return 'HomeState()';
+    return 'HomeState(isLoading: $isLoading, banners: $banners, categories: $categories)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_HomeState);
+        (other.runtimeType == runtimeType &&
+            other is _$_HomeState &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality().equals(other._banners, _banners) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      const DeepCollectionEquality().hash(_banners),
+      const DeepCollectionEquality().hash(_categories));
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(BannerResponse? banners) bannerState,
-    required TResult Function(ProductResponse? products) productState,
-  }) {
-    return $default();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function(BannerResponse? banners)? bannerState,
-    TResult? Function(ProductResponse? products)? productState,
-  }) {
-    return $default?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(BannerResponse? banners)? bannerState,
-    TResult Function(ProductResponse? products)? productState,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HomeState value) $default, {
-    required TResult Function(BannerState value) bannerState,
-    required TResult Function(ProductState value) productState,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HomeState value)? $default, {
-    TResult? Function(BannerState value)? bannerState,
-    TResult? Function(ProductState value)? productState,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeState value)? $default, {
-    TResult Function(BannerState value)? bannerState,
-    TResult Function(ProductState value)? productState,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
+  @pragma('vm:prefer-inline')
+  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
+      __$$_HomeStateCopyWithImpl<_$_HomeState>(this, _$identity);
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState() = _$_HomeState;
-}
-
-/// @nodoc
-abstract class _$$BannerStateCopyWith<$Res> {
-  factory _$$BannerStateCopyWith(
-          _$BannerState value, $Res Function(_$BannerState) then) =
-      __$$BannerStateCopyWithImpl<$Res>;
-  @useResult
-  $Res call({BannerResponse? banners});
-}
-
-/// @nodoc
-class __$$BannerStateCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$BannerState>
-    implements _$$BannerStateCopyWith<$Res> {
-  __$$BannerStateCopyWithImpl(
-      _$BannerState _value, $Res Function(_$BannerState) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? banners = freezed,
-  }) {
-    return _then(_$BannerState(
-      freezed == banners
-          ? _value.banners
-          : banners // ignore: cast_nullable_to_non_nullable
-              as BannerResponse?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$BannerState implements BannerState {
-  const _$BannerState(this.banners);
+  const factory _HomeState(
+      {final bool isLoading,
+      final List<Banners> banners,
+      final List<Categories> categories}) = _$_HomeState;
 
   @override
-  final BannerResponse? banners;
-
+  bool get isLoading;
   @override
-  String toString() {
-    return 'HomeState.bannerState(banners: $banners)';
-  }
-
+  List<Banners> get banners;
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BannerState &&
-            (identical(other.banners, banners) || other.banners == banners));
-  }
-
+  List<Categories> get categories;
   @override
-  int get hashCode => Object.hash(runtimeType, banners);
-
   @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BannerStateCopyWith<_$BannerState> get copyWith =>
-      __$$BannerStateCopyWithImpl<_$BannerState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(BannerResponse? banners) bannerState,
-    required TResult Function(ProductResponse? products) productState,
-  }) {
-    return bannerState(banners);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function(BannerResponse? banners)? bannerState,
-    TResult? Function(ProductResponse? products)? productState,
-  }) {
-    return bannerState?.call(banners);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(BannerResponse? banners)? bannerState,
-    TResult Function(ProductResponse? products)? productState,
-    required TResult orElse(),
-  }) {
-    if (bannerState != null) {
-      return bannerState(banners);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HomeState value) $default, {
-    required TResult Function(BannerState value) bannerState,
-    required TResult Function(ProductState value) productState,
-  }) {
-    return bannerState(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HomeState value)? $default, {
-    TResult? Function(BannerState value)? bannerState,
-    TResult? Function(ProductState value)? productState,
-  }) {
-    return bannerState?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeState value)? $default, {
-    TResult Function(BannerState value)? bannerState,
-    TResult Function(ProductState value)? productState,
-    required TResult orElse(),
-  }) {
-    if (bannerState != null) {
-      return bannerState(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class BannerState implements HomeState {
-  const factory BannerState(final BannerResponse? banners) = _$BannerState;
-
-  BannerResponse? get banners;
-  @JsonKey(ignore: true)
-  _$$BannerStateCopyWith<_$BannerState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ProductStateCopyWith<$Res> {
-  factory _$$ProductStateCopyWith(
-          _$ProductState value, $Res Function(_$ProductState) then) =
-      __$$ProductStateCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ProductResponse? products});
-}
-
-/// @nodoc
-class __$$ProductStateCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$ProductState>
-    implements _$$ProductStateCopyWith<$Res> {
-  __$$ProductStateCopyWithImpl(
-      _$ProductState _value, $Res Function(_$ProductState) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? products = freezed,
-  }) {
-    return _then(_$ProductState(
-      freezed == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as ProductResponse?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ProductState implements ProductState {
-  const _$ProductState(this.products);
-
-  @override
-  final ProductResponse? products;
-
-  @override
-  String toString() {
-    return 'HomeState.productState(products: $products)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProductState &&
-            (identical(other.products, products) ||
-                other.products == products));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, products);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProductStateCopyWith<_$ProductState> get copyWith =>
-      __$$ProductStateCopyWithImpl<_$ProductState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(BannerResponse? banners) bannerState,
-    required TResult Function(ProductResponse? products) productState,
-  }) {
-    return productState(products);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function(BannerResponse? banners)? bannerState,
-    TResult? Function(ProductResponse? products)? productState,
-  }) {
-    return productState?.call(products);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(BannerResponse? banners)? bannerState,
-    TResult Function(ProductResponse? products)? productState,
-    required TResult orElse(),
-  }) {
-    if (productState != null) {
-      return productState(products);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HomeState value) $default, {
-    required TResult Function(BannerState value) bannerState,
-    required TResult Function(ProductState value) productState,
-  }) {
-    return productState(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HomeState value)? $default, {
-    TResult? Function(BannerState value)? bannerState,
-    TResult? Function(ProductState value)? productState,
-  }) {
-    return productState?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeState value)? $default, {
-    TResult Function(BannerState value)? bannerState,
-    TResult Function(ProductState value)? productState,
-    required TResult orElse(),
-  }) {
-    if (productState != null) {
-      return productState(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProductState implements HomeState {
-  const factory ProductState(final ProductResponse? products) = _$ProductState;
-
-  ProductResponse? get products;
-  @JsonKey(ignore: true)
-  _$$ProductStateCopyWith<_$ProductState> get copyWith =>
+  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }

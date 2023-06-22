@@ -26,19 +26,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     final result = await authRepository.banner();
     result.fold((l) => l, (r) {
-      emit(HomeState.bannerState(r));
+      emit(state.copyWith(
+        banners: r.banners ?? [],
+      ));
     });
   }
 
   Future<FutureOr<void>> _getProducts(
-      GetProducts event,
-      Emitter<HomeState> emit,
-      ) async{
+    GetProducts event,
+    Emitter<HomeState> emit,
+  ) async {
     final result = await authRepository.product();
     result.fold((l) => l, (r) {
-      emit(HomeState.productState(r));
+      emit(state.copyWith(
+        categories: r.category ?? [],
+      ));
     });
   }
-
-
 }

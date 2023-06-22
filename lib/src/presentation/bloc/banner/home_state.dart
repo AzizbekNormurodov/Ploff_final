@@ -2,7 +2,10 @@ part of 'home_bloc.dart';
 
 @freezed
 class HomeState with _$HomeState {
-  const factory HomeState() = _HomeState;
-  const factory HomeState.bannerState(BannerResponse? banners) = BannerState;
-  const factory HomeState.productState(ProductResponse? products) = ProductState;
+  const factory HomeState({
+    @Default(false) bool isLoading,
+    @Default([]) List<Banners> banners,
+    @Default([]) List<Categories> categories,
+  }) = _HomeState;
+
 }

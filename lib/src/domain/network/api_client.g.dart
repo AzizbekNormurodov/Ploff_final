@@ -177,7 +177,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              '/v1/product',
+              '/v2/category-with-products',
               queryParameters: queryParameters,
               data: _data,
             )
